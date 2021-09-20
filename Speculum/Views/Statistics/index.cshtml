@@ -1,0 +1,231 @@
+﻿@using Speculum.ViewModel.Statistics
+@model StatsViewModel
+
+
+
+<div class="app-content content">
+	<div class="content-overlay"></div>
+	<div class="header-navbar-shadow"></div>
+	<div class="content-wrapper">
+		<div class="content-header row mb-1">
+			<h3>الإحصائيات الخاصة بلوحة التحكم</h3>
+		</div>
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">مراقبة الطلبيات</h4>
+					</div>
+					<div class="card-content">
+						<div class="card-body pl-0">
+							<div class="height-300">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">مراقبة الاوزان</h4>
+					</div>
+					<div class="card-content">
+						<div class="card-body pl-0">
+							<div class="height-300">
+								<canvas id="myChart2"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-xl-6 col-md-6 col-sm-6">
+				<div class="card">
+					<div class="card-header"><strong style="position: absolute;left: 50%;margin-top:30px;transform: translate(-50%, -50%);color:var(--danger)">الألوان وكمياتها</strong></div>
+					<hr style="margin-top: 2rem;" />
+					<div class="card-content">
+						<div class="card-body">
+							<canvas id="ColorChart" style="width: 100%; height: 300px;margin:0!important"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-6 col-md-6 col-sm-6">
+				<div class="card">
+					<div class="card-header"><strong style="position: absolute;left: 50%;margin-top:30px;transform: translate(-50%, -50%);color:var(--danger)">المواد وكمياتها</strong></div>
+					<hr style="margin-top: 2rem;" />
+					<div class="card-content">
+						<div class="card-body">
+							<canvas id="MaterialChart" style="width: 100%; height: 300px; margin:0!important"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-xl-12 col-md-6 col-sm-6">
+				<div class="card">
+					<div class="card-header"><strong style="position: absolute;left: 50%;margin-top:30px;transform: translate(-50%, -50%);color:var(--danger)">عدد الطلبيات حسب كل زبون</strong></div>
+					<hr style="margin-top: 2rem;" />
+					<div class="card-content">
+						<div class="card-body">
+							<canvas id="CustomersOrdersChart" style="width: 100%; height: 300px;margin:0!important"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-12 col-md-6 col-sm-6">
+				<div class="card">
+					<div class="card-header"><strong style="position: absolute;left: 50%;margin-top:30px;transform: translate(-50%, -50%);color:var(--danger)">عدد الطلبيات حسب كل شهر</strong></div>
+					<hr style="margin-top: 2rem;" />
+					<div class="card-content">
+						<div class="card-body">
+							<canvas id="NumberOrdersInMonthChart" style="width: 100%; height: 300px;margin:0!important"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+@section Scripts{
+	<script src="~/js/Views/Statisitic/Charts.min.js"></script>
+	<script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            responsive: true,
+            data: {
+                labels: ['مستودع الاستلام', 'قيد العمل', 'منتهية من العمل', 'مستودع تسليم' ],
+                datasets: [{
+                    label: 'عدد الطلبيات و اماكنها',
+                    data: [@Model.OrderFirstLevel, @Model.MachineLevel, @Model.BeforeDeliverLevel, @Model.EnterDeliverLevel],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+
+                    ],
+                    borderWidth: 0.5,
+
+
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+                          var ctx = document.getElementById('myChart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            responsive: true,
+            data: {
+                labels: ['مستودع الاستلام', 'قيد العمل', 'منتهية من العمل', 'مستودع تسليم' ],
+                datasets: [{
+                    label: 'الاوزان و اماكنها',
+                    data: [@Model.OrderFirstLevelWeight, @Model.MachineLevelWeight, @Model.BeforeDeliverLevelWeight, @Model.EnterDeliverLevelWeight],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+
+                    ],
+                    borderWidth: 0.5,
+
+
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+
+	</script>
+	<script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            responsive: true,
+            data: {
+                labels: ['مستودع الاستلام', 'قيد العمل', 'منتهية من العمل', 'مستودع تسليم' ],
+                datasets: [{
+                    label: 'عدد الطلبيات و اماكنها',
+                    data: [@Model.OrderFirstLevel, @Model.MachineLevel, @Model.BeforeDeliverLevel, @Model.EnterDeliverLevel],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+
+                    ],
+                    borderWidth: 0.5,
+
+
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+	</script>
+	<script src="~/js/Views/Statisitic/statisitic.js"></script>
+}

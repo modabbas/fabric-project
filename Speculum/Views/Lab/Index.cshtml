@@ -1,0 +1,174 @@
+@using Speculum.ViewModel.Lab
+@model LabViewModel
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1> المخبر</h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="LabTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th scope="col">رقم العينة</th>
+                                                <th scope="col">نوع القماش</th>
+                                                <th scope="col">اللون الجديد</th>
+                                                <th scope="col">نسبة النجاح </th>
+                                                <th scope="col">تعديل</th>
+                                                <th scope="col">حذف</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @foreach (var lab in Model.GetSample)
+                                            {
+                                                <tr data-id="@lab.Id" data-percent="@lab.SuccuessPercent"
+                                                    data-clothid="@lab.ClothId"
+                                                    data-colorid="@lab.NewColorId"
+                                                    role="row" class="odd id-@lab.Id">
+                                                    <td>@lab.Id</td>
+                                                    <td class="ClothName">@lab.ClothName</td>
+                                                    <td class="ColorName">@lab.ColorName</td>
+                                                    <td class="Percent">@lab.SuccuessPercent</td>
+                                                    <td>
+                                                        <a class="feather icon-edit-1 edit-sample">
+                                                        </a>
+                                                    </td>
+                                                    <td><a class="btn trash delete-sample" style="color:red"><i class="fa fa-remove"></i></a></td>
+                                                </tr>
+                                            }
+
+                                    </table>
+                                </div>
+                            </div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <a data-target="#AddLabModal"
+               data-toggle="modal" class="AddButton">
+                <i class="fa fa-plus my-float" data-toggle="tooltip"
+                   data-original-title="إضافة عينة مخبرية" data-placement="top"></i>
+            </a>
+
+            <div class="modal fade" id="AddLabModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">إضافة عينة</h5>
+                            <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="AddLabForm">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label asp-for="ClothId" class="col-form-label">اختر قماش</label>
+                                        <select asp-for="ClothId" id="ClothSelect" class="custom-select col-md-12" required>
+                                            @foreach (var cloth in Model.GetCloths)
+                                            {
+                                                <option value="@cloth.Id">@cloth.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label asp-for="NewColorId" class="col-form-label">اختر اللون الجديد</label>
+                                        <select asp-for="NewColorId" id="ColorSelect" class="custom-select col-md-12" required>
+                                            @foreach (var color in Model.GetColors)
+                                            {
+                                                <option value="@color.Id">@color.Name</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label asp-for="SuccessPercent">نسبة النجاح</label>
+                                        <input asp-for="SuccessPercent" id="percent" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary waves-effect waves-light add-sample">إضافة</button>
+                                <button type="submit" data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="modal fade" id="EditLabModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">تعديل العينة</h5>
+                            <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="EditLabForm">
+                            <div class="modal-body">
+								<div class="row">
+									<div class="form-group col-6">
+										<label asp-for="NewColorId" class="col-form-label">اختر اللون</label>
+										<select asp-for="NewColorId" id="EditColorSelect" class="custom-select col-md-12" required>
+											@foreach (var Color in Model.GetColors)
+											{
+												<option value="@Color.Id">@Color.Name</option>
+											}
+										</select>
+									</div>
+
+									<div class="form-group col-6">
+										<label asp-for="ClothId" class="col-form-label">اختر نوعية القماش</label>
+										<select asp-for="ClothId" id="EditClothSelect" class="custom-select col-md-12" required>
+											@foreach (var Cloth in Model.GetCloths)
+											{
+												<option value="@Cloth.Id">@Cloth.Name</option>
+											}
+										</select>
+									</div>
+
+									<div class="form-group col-12">
+										<label asp-for="SuccessPercent">نسبة النجاح</label>
+										<input asp-for="SuccessPercent" type="number" min="0" max="100" id="EditPercent" class="form-control" />
+									</div>
+									<input hidden id="Id" asp-for="Id" />
+								</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary waves-effect waves-light editBtn">تعديل</button>
+                                <button type="submit" data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>  
+</div>
+
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="~/js/Views/Lab/lab.js"></script>
+}

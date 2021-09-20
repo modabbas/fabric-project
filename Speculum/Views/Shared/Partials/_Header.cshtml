@@ -1,0 +1,161 @@
+﻿<nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
+    <div class="navbar-wrapper">
+        <div class="navbar-container content">
+            <div class="navbar-collapse" id="navbar-mobile">
+                <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
+                    </ul>
+                </div>
+                <ul class="nav navbar-nav float-right">
+
+                    <li class="dropdown dropdown-user nav-item">
+                        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                            <span><img style="margin-left:5px;" class="round" src="~/images/profile.png" alt="avatar" height="40" width="40"></span>
+                            <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">@User.Identity.Name</span></div><i class="ficon feather icon-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a asp-controller="Account" asp-action="Logout" class="dropdown-item"><i class="feather icon-power"></i> تسجيل الخروج</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item mr-auto">
+                <a class="navbar-brand">
+                    <div class="brand-logo"></div>
+                    <h2 class="brand-text mb-0">Speculum</h2>
+                </a>
+            </li>
+            <li class="nav-item nav-toggle">
+            <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 themeAncient toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon themeAncient" data-ticon="icon-disc"></i></a></li>
+        </ul>
+    </div>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+		<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+			<li class="navigation-header">
+				<span>الأقسام الرئيسية</span>
+			</li>
+
+			<li class="nav-item">
+				<a asp-controller="Statistics" asp-action="Index" class="m-menu__link ">
+					<i class="feather icon-bar-chart"></i><span class="menu-title">الإحصائيات</span>
+				</a>
+			</li>
+
+			<li class="nav-item ">
+				<a asp-controller="Customer" asp-action="Index" class="m-menu__link ">
+					<i class="feather icon-user"></i><span class="menu-title">الزبائن</span>
+				</a>
+			</li>
+
+			@*<li class="nav-item ">
+				<a asp-controller="CustomerOrderDetailsMachine" asp-action="Index" class="m-menu__link ">
+					<img src="~/assets/icons/icons8-washing-machine-24.png" /><span class="menu-title">الطلبيات والماكينات </span>
+				</a>
+			</li>*@
+			<li class="nav-item ">
+				<a asp-controller="Machine" asp-action="Index" class="m-menu__link ">
+					<img src="~/assets/icons/icons8-depot-24.png" /><span class="menu-title"> ماكينات المعمل  </span>
+				</a>
+			</li>
+
+
+		</ul>
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="navigation-header">
+                <span>المستودع و المخبر</span>
+            </li>
+
+            <li class="nav-item">
+                <a asp-controller="Lab" asp-action="Index" class="m-menu__link ">
+                    <i class="feather icon-thermometer"></i><span class="menu-title">المخبر</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a asp-controller="Cloth" asp-action="Index" class="m-menu__link ">
+                    <img src="~/assets/icons/icons8-clothes-24.png" /><span class="menu-title">القماش</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a asp-controller="Color" asp-action="Index" class="m-menu__link ">
+                    <img src="~/assets/icons/icons8-paint-palette-24.png"/><span class="menu-title"> الألوان</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Material" asp-action="Index" class="m-menu__link ">
+                    <img src="~/assets/icons/icons8-product-24.png" /><span class="menu-title"> مواد</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Cloth" asp-action="ClothMaterials" class="m-menu__link ">
+                    <img src="~/assets/icons/icons8-new-product-24.png" /><span class="menu-title">    مواد القماش</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a asp-controller="WareHouse" asp-action="Index" class="m-menu__link ">
+                    <img src="~/assets/icons/icons8-warehouse-24.png" /><span class="menu-title"> مستودع</span>
+                </a>
+            </li>
+        </ul>
+
+		<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+			<li class="navigation-header">
+				<span>الطلبيات</span>
+			</li>
+
+			<li class="nav-item ">
+				<a asp-controller="CustomerOrder" asp-action="Index" class="m-menu__link ">
+					<i class="feather icon-star"></i><span class="menu-title"> طلبية الكلية</span>
+				</a>
+			</li>
+			<li class="nav-item ">
+				<a asp-controller="CustomerOrderDetail" asp-action="Index" class="m-menu__link ">
+					<img src="~/assets/icons/equalizer.png"/><span class="menu-title"> مراحل طلبيات الفرعية</span>
+				</a>
+			</li>
+			<li class="nav-item ">
+				<a asp-controller="CustomerOrderDetail" asp-action="MachineOrder" class="m-menu__link ">
+					<i class="feather icon-loader"></i><span class="menu-title"> طالبيات قيد العمل    </span>
+				</a>
+			</li>
+			<li class="nav-item ">
+				<a asp-controller="CustomerOrderDetail" asp-action="DoneOrder" class="m-menu__link ">
+					<i class="feather icon-check-circle"></i><span class="menu-title">           المنتهية من العمل</span>
+				</a>
+			</li>
+
+			<li class="nav-item ">
+				<a asp-controller="Deliver" asp-action="Index" class="m-menu__link ">
+					<i class="feather icon-log-out"></i><span class="menu-title"> مستودع تسليم</span>
+				</a>
+			</li>
+
+			<li class="nav-item ">
+				<a asp-controller="OrderMaterial" asp-action="Index" class="m-menu__link ">
+					<i class="feather icon-droplet"></i><span class="menu-title">مواد الطلبية</span>
+				</a>
+			</li>
+		</ul>
+
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="navigation-header">
+                <span>الإعدادات</span>
+            </li>
+
+            <li class="nav-item ">
+                <a asp-controller="Account" asp-action="Index" class="m-menu__link ">
+                    <i class="feather icon-user"></i><span class="menu-title">الحسابات</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

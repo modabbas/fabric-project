@@ -1,0 +1,104 @@
+﻿@using Speculum.ViewModel.Warehouse
+@model WareHouseViewModel
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1>صفحة  إستعراض المستودع</h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="categoryTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+
+                                                <th scope="col">إسم اللون  </th>
+
+                                                <th scope="col">  كمية </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var color in Model.GetColors)
+                                            {
+                                                <tr role="row" class="odd">
+
+                                                    <td class="nameEng">@color.Name</td>
+
+                                                    <td class="nameEng">@color.Amount</td>
+                                                </tr>
+
+
+                                            }
+
+
+
+
+                                    </table>
+                                </div>
+
+                                <div class="col-6">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="categoryTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+
+                                                <th scope="col">إسم المادة</th>
+
+                                                <th scope="col">   كمية المتبقية</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var material in Model.GetMaterial)
+                                            {
+                                                <tr role="row" class="odd">
+
+                                                    <td class="nameEng">@material.Name</td>
+
+                                                    <td class="nameEng">@material.Amount</td>
+                                                </tr>
+
+
+                                            }
+
+
+
+
+                                    </table>
+                                </div>
+
+                            </div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+ 
+
+         
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+
+}

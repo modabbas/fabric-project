@@ -1,0 +1,143 @@
+﻿
+@using Speculum.ViewModel.OrderMaterial
+@model OrderMaterialViewModel
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1> مواد الطلبية</h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="categoryTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th scope="col">رقم الطلبية الفرعية</th>
+                                                <th scope="col">المادة</th>
+                                                <th scope="col">كمية المادة</th>
+                                                <th scope="col">وزن الطلبية</th>
+                                          
+                                                <th scope="col">تعديل</th>
+                                                <th scope="col">حذف</th>
+                                            </tr>
+                                        </thead>
+										<tbody>
+											<tr role="row" class="odd">
+												<td class="nameAr">1</td>
+												<td class="nameEng">أوكسجين</td>
+												<td class="nameEng">50 لتر</td>
+												<td class="nameEng">300 كيلو</td>
+												<td>
+													<a class="feather icon-edit-1"></a>
+												</td>
+												<td><a class="btn trash" style="color:red"><i class="fa fa-remove"></i></a></td>
+											</tr>
+											<tr role="row" class="odd">
+												<td class="nameAr">1</td>
+												<td class="nameEng">خل</td>
+												<td class="nameEng">100 لتر</td>
+												<td class="nameEng">300 كيلو</td>
+												<td>
+													<a class="feather icon-edit-1"></a>
+												</td>
+												<td><a class="btn trash" style="color:red"><i class="fa fa-remove"></i></a></td>
+											</tr>
+											<tr role="row" class="odd">
+												<td class="nameAr">3</td>
+												<td class="nameEng">زيت</td>
+												<td class="nameEng">250 لتر</td>
+												<td class="nameEng">200 كيلو</td>
+												<td>
+													<a class="feather icon-edit-1"></a>
+												</td>
+												<td><a class="btn trash" style="color:red"><i class="fa fa-remove"></i></a></td>
+											</tr>
+                                    </table>
+                                </div>
+                            </div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <a data-target="#AddOrderModal"
+               data-toggle="modal" class="AddButton">
+                <i class="fa fa-plus my-float" data-toggle="tooltip"
+                   data-original-title="إضافة مواد للطلبية" data-placement="top"></i>
+            </a>
+
+            <div class="modal fade" id="AddOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+							<h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">إضافة مواد للطلبية</h5>
+                            <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="addFormOffer" method="post"
+                              asp-controller="OrderMaterial"
+                              asp-action="Index">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label asp-for="ClothMaterialId" class="col-form-label">اختر   المادة</label>
+                                        <select asp-for="ClothMaterialId" id="CategorySelect" class="custom-select col-md-12" required>
+                                               <option>خل</option>
+											   <option>أوكسجين</option>
+											   <option>زيت</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label asp-for="OrderDetailCustomerId" class="col-form-label">اختر    الطلبية</label>
+                                        <select asp-for="OrderDetailCustomerId" id="CategorySelect" class="custom-select col-md-12" required>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+												<option>4</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <label asp-for="Amount">   كمية المادة</label>
+                                        <input asp-for="Amount" rows="3" maxlength="150" id="title" class="form-control" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary waves-effect waves-light">إضافة</button>
+                                <button data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                            </div>
+                            <input hidden asp-for="Id" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+ 
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+    
+}

@@ -1,0 +1,218 @@
+.header-navbar .navbar-container .dropdown-menu-media {
+    width: 15rem;
+}
+.header-navbar .dropdown .dropdown-menu.dropdown-menu-right::before,
+ .header-navbar .dropup .dropdown-menu.dropdown-menu-right::before {
+    left: 4.3rem;
+}
+.themeAncient{
+	color:#c69405;
+}
+.AddButton {
+    width: 50px;
+    height: 50px;
+    display: block;
+    position: fixed;
+    border-radius: 50%;
+    padding: 14px;
+    bottom: 50px;
+    left: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #2dc772;
+    color: #FFF;
+    text-align: center;
+    box-shadow: 2px 2px 3px #76767696;
+}
+
+.AddButtonOnRight {
+    width: 50px;
+    height: 50px;
+    display: block;
+    position: fixed;
+    border-radius: 50%;
+    padding: 14px;
+    bottom: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #d71a1cc9;
+    color: #FFF;
+    text-align: center;
+    box-shadow: 2px 2px 3px #76767696;
+}
+
+.AddButton:hover{
+    
+}
+.my-float {
+    color: cornsilk;
+    margin-top: 5px;
+}
+.navbar-floating .header-navbar-shadow {
+background: linear-gradient(-180deg,
+ rgba(228, 229, 210, 0.95) 44%,
+ rgba(219, 215, 174, 0.46) 73%,
+  rgba(255, 255, 255, 0));
+}
+
+.aboutImage {
+  width: 200px;
+}
+
+@media screen and (max-width: 765px) {
+  .aboutImage {
+  width: 300px;
+  }
+}
+
+
+
+
+
+
+.navbar-brand {
+    background-size: 30px;
+    height: 20px;
+    width: 20px;
+    background-repeat: no-repeat;
+}
+
+.expanded .simpleLogo {
+    display: none;
+}
+
+.menu-expanded .simpleLogo {
+    display: none;
+}
+
+.mainLogo {
+    display: none;
+}
+
+.expanded .mainLogo {
+    display: block;
+}
+
+.menu-expanded .mainLogo {
+    display: block;
+}
+
+.imagee {
+    height: 150px;
+    width: 100%;
+    overflow: hidden
+}
+
+    .imagee img {
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+
+
+
+.logoBackground {
+    background-color: #ffff;
+    box-shadow: 0 0 7px #ffff inset, 0 0 7px #ffff;
+}
+
+
+.poweredByAlign {
+    padding-right: 45px;
+    margin-top: 10.5rem;
+}
+
+
+.elk-logo {
+    height: 80px;
+    width: 170px;
+}
+
+.statics-num-card {
+    position: absolute;
+    top: 50%;
+    font-size: 24px;
+    font-weight: 700;
+    color: #7f7f7f;
+    letter-spacing: 2px;
+    left: 50%;
+}
+
+.edit-dollar {
+    background: linear-gradient(-118deg, #c69405, rgba(240, 204, 103, 0.7));
+}
+    .edit-dollar:hover {
+        border-color: #eecc50 !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 8px 25px -8px #cccbb9;
+    }
+
+
+.dataTables_wrapper > .row {
+    flex-wrap: nowrap;
+}
+
+.switch-place {
+    margin-right: 1.4rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    padding-right: 0;
+}
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    list-style: none;
+    padding: 2px 14px 2px 10px;
+    font-size: 1em;
+}
+
+
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.4 !important;
+    margin-right: 14px !important;
+}
+}
+
+
+.trumbowyg-insertImage-button {
+    visibility:hidden;
+}
+  
+
+.trumbowyg-box .trumbowyg-editor{
+    height:223px;
+}
+
+.card-footer{
+    background-color:white!important;
+}
+
+.gift {
+    position: absolute;
+    margin-top: 30px;
+    font-weight:bold;
+}
+
+#searchName::-webkit-input-placeholder {
+    font-size: 17px !important;
+    margin-right: 5px;
+}
+#email::-webkit-input-placeholder {
+    font-size: 16px;
+    color: #6f42c1a3;
+}
+
+.vs-checkbox-con .vs-checkbox {
+    border-width: 1px!important;
+}
+
+

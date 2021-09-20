@@ -1,0 +1,114 @@
+﻿@using Speculum.ViewModel.Account
+@model AccountViewModel
+@{
+	Layout = null;
+}
+	<head>
+		<title> تسجيل حسابات</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="utf-8" />
+		<!-- BEGIN: Vendor CSS-->
+		<link rel="stylesheet" type="text/css" href="~/lib/Log_Reg/css/vendors-rtl.min.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/Log_Reg/css/charts/apexcharts.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/Log_Reg/css/extensions/tether-theme-arrows.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/Log_Reg/css/extensions/tether.min.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/Log_Reg/css/extensions/shepherd-theme-default.css">
+		<!-- END: Vendor CSS-->
+		<!-- BEGIN: Theme CSS-->
+		<link rel="stylesheet" type="text/css" href="~/lib/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/bootstrap-extended.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/colors.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/components.css">
+		<!-- End: Theme CSS-->
+		<!-- BEGIN: Page CSS-->
+		<link rel="stylesheet" type="text/css" href="~/lib/css/core/vertical-menu.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/core/palette-gradient.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/pages/dashboard-analytics.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/pages/card-analytics.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/plugins/tour.css">
+		<!-- END: Page CSS-->
+		<!-- BEGIN: Custom CSS-->
+		<link rel="stylesheet" type="text/css" href="~/lib/css/custom.css">
+		<link rel="stylesheet" type="text/css" href="~/lib/css/mystyles.css">
+		<!-- END: Custom CSS-->
+		<!-- BEGIN: Authentication CSS-->
+		<link rel="stylesheet" type="text/css" href="~/lib/css/authentication.css">
+		<!-- End: Authentication CSS-->
+		<!--BEGIN: Loading Css-->
+		<link href="~/lib/Loader/css/LoadingStyle.css" rel="stylesheet" />
+		<!--END: Loading Css-->
+
+
+
+	</head>
+
+    <body class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image-edit blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+        <!-- BEGIN: Content-->
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <section class="row flexbox-container">
+                        <div class="col-xl-12 col-12 d-flex justify-content-center">
+                            <div class="card bg-authentication rounded-0 mb-0">
+                                <div class="row m-0">
+                                    <div>
+                                        <div class="card rounded-0 mb-0 p-2">
+                                            <div class="card-header pt-50 pb-1">
+                                                <div class="card-title">
+                                                    <h4 class="mb-0">إنشاء حساب	</h4>
+                                                </div>
+                                            </div>
+                                            <p class="px-2">اضافة مستخدم جديد على لوحة التحكم</p>
+                                            <div class="card-content">
+                                                <div class="card-body pt-0">
+                                                    <form id="accountForm">
+                                                        <div class="form-label-group col-12">
+                                                            <input asp-for="UserName" type="text" id="username" class="form-control" placeholder="اسم المستخدم" required>
+                                                            <label for="inputName">اسم المستخدم</label>
+                                                        </div>
+                                                        <div class="form-label-group col-12">
+                                                            <input asp-for="Password" type="password" id="password" class="form-control" placeholder="كلمة السر" required>
+                                                            <label for="inputPassword">كلمة السر</label>
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <select asp-for="Role" id="roleSelect" class="custom-select col-md-12">
+                                                                <option selected value="0" disabled>اختر سماحية</option>
+                                                                <option value="Admin">مدير عام</option>
+                                                                <option value="Receiving">أمين مستودع الاستلام</option>
+                                                                <option value="Delivery">مسؤول التسليم</option>
+                                                                <option value="Machine">مسؤول الماكينات</option>
+                                                                <option value="Laboratory">مسؤول المخبر</option>
+                                                            </select>
+                                                        </div>
+                                                        <a asp-controller="Account" asp-action="Index" class="btn btn-outline-primary float-left btn-inline mb-50 waves-effect waves-light">رجوع</a>
+                                                        <button type="submit" id="createUser" class="btn btn-primary float-right btn-inline mb-50">إنشاء</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        <script src="~//lib/js/core/jquery.min.js"></script>
+        <script src="~/lib/js/vendors.min.js"></script>
+        <script src="~/lib/js/apexcharts.min.js"></script>
+        <script src="~/lib/js/tether.min.js"></script>
+        <script src="~/lib/js/core/app-menu.js"></script>
+        <script src="~/lib/js/core/app.js"></script>
+        <script src="~/lib/js/script/components.js"></script>
+        <script src="~/lib/js/script/dashboard-analytics.js"></script>
+        <script src="~/lib/sweetalert/sweetalert.js"></script>
+        <script src="~/lib/Loader/js/LoadingJs.js"></script>
+        <script src="~/js/Views/Account/account.js"></script>
+
+    </body>

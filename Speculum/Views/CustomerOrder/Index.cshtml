@@ -1,0 +1,245 @@
+﻿@using Speculum.ViewModel.CustomerOrder
+@model CustomerOrderViewModel
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1> الطلبيات</h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="BigOrderTable">
+                                        <thead>
+                                            <tr role="row">
+                                                <th scope="col">رقم الطلبية</th>
+                                                <th scope="col">نوع القماش</th>
+                                                <th scope="col">الزبون</th>
+                                                <th scope="col">وزن القماش</th>
+                                                <th scope="col">تاريخ تسجيل الطلبية</th>
+                                                <th scope="col">نسبة القطن</th>
+                                                <th scope="col">نسبة البوليستر</th>
+                                                <th scope="col">تعديل</th>
+                                                <th scope="col">حذف</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var customerOrder in Model.CustomerOrders)
+                                            {
+                                                <tr data-id="@customerOrder.Id" data-typefabricid="@customerOrder.ClothId"
+                                                    data-customerId="@customerOrder.CustomerId" data-weight="@customerOrder.Weight"
+                                                    data-cotton="@customerOrder.PercentCotton" data-polister="@customerOrder.PercentPolister"
+                                                    role="row" class="odd id-@customerOrder.Id">
+                                                    <td>@customerOrder.Id</td>
+                                                    <td class="ColthName">@customerOrder.ClothName</td>
+                                                    <td class="CustomerName">@customerOrder.CustomerName</td>
+                                                    <td class="Weight">@customerOrder.Weight</td>
+                                                    <td>@customerOrder.CreatedAt.ToString("dd-MM-yyyy")</td>
+                                                    <td class="PercentCotton">@customerOrder.PercentCotton</td>
+                                                    <td class="PercentPolister">@customerOrder.PercentPolister</td>
+                                                    <td>
+                                                        <a class="feather icon-edit-1 edit-big-order">
+                                                        </a>
+                                                    </td>
+                                                    <td><a class="btn trash delete-big-order" style="color:red"><i class="fa fa-remove"></i></a></td>
+                                                </tr>
+                                            }
+
+                                    </table>
+                                </div>
+                            </div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <a data-target="#AddOrderModal"
+               data-toggle="modal" class="AddButton">
+                <i class="fa fa-plus my-float" data-toggle="tooltip"
+                   data-original-title="إضافة طلبية" data-placement="top"></i>
+            </a>
+
+            <div class="modal fade" id="AddOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">إضافة طلبية</h5>
+                            <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="AddOrderForm">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label asp-for="CustomerId" class="col-form-label">اختر الزبون</label>
+                                        <select asp-for="CustomerId" id="CustomerSelect" class="custom-select col-md-12" required>
+                                            @foreach (var Customer in Model.Customers)
+                                            {
+                                                <option value="@Customer.CustomerId">@Customer.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label asp-for="ClothId" class="col-form-label">اختر نوعية القماش</label>
+                                        <select asp-for="ClothId" id="TypeFabricSelect" class="custom-select col-md-12" required>
+                                            @foreach (var Cloth in Model.Cloths)
+                                            {
+                                                <option value="@Cloth.Id">@Cloth.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <label asp-for="Weight">وزن القماش(الكلي للطلبية)</label>
+                                        <input asp-for="Weight" min="0" id="FabricWeight" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label asp-for="PercentCotton">نسبة القطن%</label>
+                                        <input asp-for="PercentCotton" min="0" max="100" type="number" id="cotton" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label asp-for="PercentPolister">نسبة البوليستر%</label>
+                                        <input asp-for="PercentPolister" min="0" max="100" type="number" id="polister" class="form-control" />
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary waves-effect waves-light add-big-order">إضافة</button>
+                                <button  data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="modal fade" id="EditOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">تعديل طلبية</h5>
+                                <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <form id="EditOrderForm">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label asp-for="CustomerId" class="col-form-label">اختر   الزبون</label>
+                                            <select asp-for="CustomerId" id="EditCustomerSelect" class="custom-select col-md-12" required>
+                                                @foreach (var Customer in Model.Customers)
+                                                {
+                                                    <option value="@Customer.CustomerId">@Customer.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label asp-for="ClothId" class="col-form-label">اختر نوعية القماش</label>
+                                            <select asp-for="ClothId" id="EditClothSelect" class="custom-select col-md-12" required>
+                                                @foreach (var Cloth in Model.Cloths)
+                                                {
+                                                    <option value="@Cloth.Id">@Cloth.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label asp-for="Weight">وزن القماش</label>
+                                            <input asp-for="Weight" min="0" id="EditWeightFabric" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label asp-for="PercentCotton">نسبة القطن</label>
+                                            <input asp-for="PercentCotton" min="0" max="100" type="number" id="EditCotton" class="form-control" />
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label asp-for="PercentPolister">نسبة البوليستر</label>
+                                            <input asp-for="PercentPolister" type="number" min="0" max="100" id="EditPolister" class="form-control"/>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary waves-effect waves-light editBtn">تعديل</button>
+                                    <button type="submit" data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                                </div>
+                                <input hidden id="Id" asp-for="Id" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+    <script>
+        class Index {
+
+
+            bindEvents() {
+                $("#cotton").on("change", (event) => {
+                    event.preventDefault();
+                    var a = document.getElementById("cotton").value;
+                    document.getElementById("polister").value = 100 - a;
+                });
+
+                $("#polister").on("change", (event) => {
+                    event.preventDefault();
+                    var a = document.getElementById("polister").value;
+                    document.getElementById("cotton").value = 100 - a;
+                });
+
+
+
+				$("#EditCotton").on("change", (event) => {
+					event.preventDefault();
+					var a = document.getElementById("EditCotton").value;
+					document.getElementById("EditPolister").value = 100 - a;
+				});
+
+				$("#EditPolister").on("change", (event) => {
+					event.preventDefault();
+					var a = document.getElementById("EditPolister").value;
+					document.getElementById("EditCotton").value = 100 - a;
+				});
+
+                return this;
+            }
+
+
+        }
+
+
+        $(document).ready(() => {
+            new Index().bindEvents();
+        });
+    </script>
+	<script src="~/js/Views/BigOrder/bigOrder.js"></script>
+}

@@ -1,0 +1,121 @@
+﻿@using Speculum.ViewModel.CustomerOrderDetailMachine
+@model CustomerOrderDetailMachineViewModel
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1>الماكينة والطلبيات</h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="CustomerOrderDetailMachineTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th scope="col">#</th>
+                                                <th scope="col">رقم الطلبية</th>
+                                                <th scope="col">رقم الماكينة</th>
+                                                <th scope="col">كمية الماء</th>
+                                                <th scope="col">تعديل</th>
+                                                <th scope="col">حذف</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @foreach (var ordermachine in Model.GetCustomerOrderDetailsMachinesDto)
+                                            {
+                                                <tr data-id="@ordermachine.Id" data-amountwater="@ordermachine.AmountWater"
+                                                    data-orderdetailcustomer="@ordermachine.CustomerOrderDetailsId"
+                                                    data-machine="@ordermachine.MachineId"
+
+                                                    role="row" class="odd id-@ordermachine.Id">
+                                                    <td>@ordermachine.Id</td>
+                                                    <td class="phone">@ordermachine.CustomerOrderDetailsId</td>
+                                                    <td class="email">@ordermachine.MachineId</td>
+                                                    <td class="email">@ordermachine.AmountWater</td>
+                                                    <td><a class="feather icon-edit-1 edit-lab"></a></td>
+                                                    <td><a class="btn trash delete-lab" style="color:red"><i class="fa fa-remove"></i></a></td>
+                                                </tr>
+                                            }
+
+                                    </table>
+                                </div>
+                            </div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <a class="AddButton add-customerorderdetailmachine">
+                <i class="fa fa-plus my-float" data-toggle="tooltip"
+                   data-original-title="إضافة عينة" data-placement="top"></i>
+            </a>
+
+            <div class="modal fade" id="AddCustomerOrderDetailMachineModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">إضافة عينة</h5>
+                            <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="addFormCustomerOrderDetailMachine">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label asp-for="CustomerOrderDetailId" class="col-form-label">اختر الطلبية الشاملة</label>
+                                        <select asp-for="CustomerOrderDetailId" id="customerorderdetailId" class="form-control form-control-lg col-md-12" required>
+                                            @foreach (var customerorderdetail in Model.GetCustomerOrderDetailsDto)
+                                            {
+                                                <option value="@customerorderdetail.Id">@customerorderdetail.Id</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label asp-for="MachineId" class="col-form-label">اختر الماكينة الموافقة</label>
+                                        <select asp-for="MachineId" id="color" class="form-control form-control-lg col-md-12" required>
+                                            @foreach (var machine in Model.GetMachineDto)
+                                            {
+                                                <option value="@machine.Id">@machine.MachineType</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                    <div class="form-group col-8">
+                                        <label asp-for="AmountWater"> كمية الماء</label>
+                                        <input asp-for="AmountWater" id="amountwater" class="form-control" required />
+                                    </div>
+                                    <input asp-for="Id" hidden id="Id" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light add-customerorderdetailmachine">إضافة</button>
+                                <button type="submit" data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="~/js/Views/CustomerOrderDetailsMachine/customerorderdetailmachine.js"></script>
+}

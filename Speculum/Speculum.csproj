@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Color\Partials\**" />
+    <Content Remove="Views\Color\Partials\**" />
+    <EmbeddedResource Remove="Views\Color\Partials\**" />
+    <None Remove="Views\Color\Partials\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FabrciProject.IData\FabrciProject.IData.csproj" />
+    <ProjectReference Include="..\FabricProject.Data\FabricProject.Data.csproj" />
+    <ProjectReference Include="..\FabricProject.Dto\FabricProject.Dto.csproj" />
+    <ProjectReference Include="..\FabricProject.SqlServer\FabricProject.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>

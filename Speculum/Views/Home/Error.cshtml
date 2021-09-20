@@ -1,0 +1,74 @@
+﻿@{
+	Layout = null;
+
+}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="rtl">
+<head>
+	<link rel="apple-touch-icon" href="~/Dashboard/assets/images/ico/favicon.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+	<link href="~/assets/lib/css/vendors-rtl.min.css" rel="stylesheet" />
+	<link href="~/assets/lib/css/charts/apexcharts.css" rel="stylesheet" />
+	<link href="~/assets/lib/css/extensions/tether-theme-arrows.css" rel="stylesheet" />
+	<link href="~/assets/lib/css/extensions/tether.min.css" rel="stylesheet" />
+	<link href="~/assets/lib/css/extensions/shepherd-theme-default.css" rel="stylesheet" />
+	<link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/assets/css/bootstrap-extended.css" rel="stylesheet" />
+	<link href="~/assets/css/colors.css" rel="stylesheet" />
+
+
+	<link href="~/assets/css/components.css" rel="stylesheet" />
+
+
+	<link href="~/assets/css/core/menu/menu-types/vertical-menu.css" rel="stylesheet" />
+	<link href="~/assets/css/core/colors/palette-gradient.css" rel="stylesheet" />
+	<link href="~/assets/css/pages/dashboard-analytics.css" rel="stylesheet" />
+	<link href="~/assets/css/pages/card-analytics.css" rel="stylesheet" />
+	<link href="~/assets/css/plugins/tour/tour.css" rel="stylesheet" />
+	<link href="~/assets/css/custom.css" rel="stylesheet" />
+	<link href="~/assets/css/mystyles.css" rel="stylesheet" />
+</head>
+
+<body class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+	<!-- BEGIN: Content-->
+	<div class="app-content content">
+		<div class="content-overlay"></div>
+		<div class="header-navbar-shadow"></div>
+		<div class="content-wrapper">
+			<div class="content-header row">
+			</div>
+			<div class="content-body">
+				<!-- error 404 -->
+				<section class="row flexbox-container">
+					<div class="col-xl-7 col-md-8 col-12 d-flex justify-content-center">
+						<div class="card auth-card bg-transparent shadow-none rounded-0 mb-0 w-100">
+							<div class="card-content">
+								<div class="card-body text-center">
+									<img src="~/images/404.png" class="img-fluid align-self-center" alt="branding logo">
+									<h1 class="font-large-2 my-1">404 - Page Not Found!</h1>
+									<h3 class="p-2">
+										لست مخولاَ بالدخول الى هذه الصفحة.
+									</h3>
+									<a asp-controller="Account" asp-action="Login" asp-route-error="1" class="btn btn-primary btn-lg mt-2">العودة إلى صفحة تسجيل الدخول</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- error 404 end -->
+
+			</div>
+		</div>
+	</div>
+	<script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
+	<script src="~/assets/lib/js/vendors.min.js"></script>
+	<script src="~/assets/lib/js/charts/apexcharts.js"></script>
+	<script src="~/assets/lib/js/extensions/tether.min.js"></script>
+	<script src="~/assets/js/core/app-menu.js"></script>
+	<script src="~/assets/js/core/app.js"></script>
+	<script src="~/assets/js/scripts/components.js"></script>
+	<script src="~/assets/js/scripts/pages/dashboard-analytics.js"></script>
+	<script src="~/lib/sweetalert/sweetalert.js"></script>
+</body>
+<!-- END: Body-->
+</html>

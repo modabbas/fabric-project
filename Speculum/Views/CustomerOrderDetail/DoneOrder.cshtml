@@ -1,0 +1,70 @@
+﻿@using Speculum.ViewModel.CustomerOrderDetail
+@model CustomerOrderDetailsViewModel
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1> طلبيات المنتهية من العمل </h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="categoryTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th scope="col"> الرقم الطلبية الاصلية</th>
+                                                <th scope="col">نوع القماش</th>
+                                                <th scope="col">   الزبون</th>
+                                                <th scope="col"> وزن القماش الفرعي</th>
+                                                <th scope="col">تاريخ تسجيل الطلبية</th>
+                                                <th scope="col">  لون الجديد</th>
+                                                <th scope="col">   كمية اللون اللون</th>
+                                                <th scope="col">     طول القديم</th>
+                                                <th scope="col">   ذهبت لمستودع التسليم</th>
+                                                 
+                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var DoneOrder in Model.DoneOrders)
+                                            {
+                                            <tr data-id="@DoneOrder.Id" role="row" class="odd">
+                                                <td class="nameAr">@DoneOrder.Id</td>
+                                                <td class="nameEng">@DoneOrder.ClothName</td>
+                                                <td class="nameEng">@DoneOrder.CustomerName</td>
+                                                <td class="nameEng">@DoneOrder.PartialWeghit</td>
+                                                <td class="nameEng">@DoneOrder.CreatedAt</td>
+                                                <td class="nameEng">@DoneOrder.ColorName</td>
+                                                <td class="nameEng">@DoneOrder.ColorAmount</td>
+                                                <td class="nameEng">@DoneOrder.OldLenght </td>
+                                                @if (DoneOrder.GoneToDeliver > 0)
+                                                {
+                                                    <td class="nameEng"><button class="btn btn-outline-success rounded-circle btn-icon"><i class="fa fa-check" /> </button></td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="nameEng"><button class="btn btn-outline-danger rounded-circle btn-icon delivery-repoistory"> <i class="fa fa-times" /> </button></td>
+                                                }
+                                            </tr>
+                                            }
+
+                                    </table></div></div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div></div></div></div><a data-target="#AddOrderModal"
+            </div>
+        </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+
+}

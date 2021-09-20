@@ -1,0 +1,119 @@
+﻿@using Speculum.ViewModel.Account
+@model AccountViewModel
+
+@section Styles{
+    <link href="~/lib/Loader/css/LoadingStyle.css" rel="stylesheet" />
+}
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <h1> الحسابات</h1>
+        </div>
+        <div class="content-body">
+            <section id="dashboard-analytics">
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table xxx table-striped dataex-html5-selectors" id="UserTable" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th scope="col">إسم المستخدم</th>
+                                                <th scope="col">الصلاحية</th>
+                                                <th scope="col">تاريخ إنشاء الحساب</th>
+                                                <th scope="col">تعديل</th>
+                                                <th scope="col">حذف</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var user in Model.GetAllUsers)
+                                            {
+                                                <tr data-id="@user.Id" data-username="@user.UserName"
+                                                    data-role="@user.Role" role="row" class="odd id-@user.Id">
+                                                    <td class="name">@user.UserName</td>
+                                                    <td class="role">@user.RoleAr</td>
+                                                    <td>@user.AccountDate.ToLongDateString()</td>
+
+                                                    <td><a data-target="#EditAccountModal" data-toggle="modal" id="updUser" class="feather icon-edit-1"></a></td>
+                                                    <td><a class="btn trash delete-user" style="color:red"><i class="fa fa-remove"></i></a></td>
+                                                </tr>
+                                            }
+
+                                    </table>
+                                </div>
+                            </div><div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div></div></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <a asp-controller="Account" asp-action="Register" data-toggle="tooltip"
+               data-original-title="إضافة حساب" data-placement="top" class="AddButton">
+                <i class="feather icon-user-plus my-float"></i>
+            </a>
+            <div class="modal fade" id="EditAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-modal="true" style="padding-right: 17px; display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 style="color:#5347d0" class="modal-title" id="exampleModalLongTitle">تعديل الحساب</h5>
+                            <button id="Exit" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form id="EditAccountForm">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label asp-for="UserName">اسم المستخدم</label>
+                                        <input asp-for="UserName" id="username" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label asp-for="Password">كلمة المرور</label>
+                                        <input asp-for="Password" id="password" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label asp-for="Role" class="col-form-label"> تعديل الصلاحية:</label>
+                                    <select id="EditRoleSelect" asp-for="Role"
+                                            class="custom-select col-md-12">
+                                        @foreach (var role in Model.GetRoles)
+                                        {
+                                            <option value="@role.Type">@role.TypeAr</option>
+                                        }
+                                    </select>
+                                </div>
+
+                            </div>
+                            <input hidden id="userId" asp-for="Id" />
+                            <div class="modal-footer">
+                                <button id="SaveEdit" class="btn btn-primary waves-effect waves-light">حفظ</button>
+                                <button data-dismiss="modal" class="btn btn-danger waves-effect waves-light">إغلاق</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/assets/lib/js/datatable/datatablesinarabic.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.min.js"></script>
+    <script src="~/assets/lib/js/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="~/lib/sweetalert/sweetalert.js"></script>
+    <script src="~/lib/Loader/js/LoadingJs.js"></script>
+    <script src="~/js/Views/Account/account.js"></script>
+}
